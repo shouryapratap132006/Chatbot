@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import AuthProvider from "@/Context/auth";
+import ChatbotProvider from "@/Context/chatbot";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,8 +12,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-        <Navbar/>
-        {children}
+          <ChatbotProvider>
+          <Navbar/>
+          {children}
+          </ChatbotProvider>
+        
         </AuthProvider>
       </body>
     </html>
