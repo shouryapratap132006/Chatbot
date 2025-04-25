@@ -1,16 +1,52 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/Context/auth";
 import "./Dashboard.css";
 import { ChatbotContext } from "@/Context/chatbot";
 import Link from "next/link";
+import { getToken } from "@/helpers/auth";
+import { createChatbot, getChatbots } from "@/services/chatbot";
+
 const Dashboard = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const { chatbots, setChatbots } = useContext(ChatbotContext);
   const [botName, setBotName] = useState("");
   const [botContext, setBotContext] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    getChatbots({ token: getToken() })
+      .then((res) => {
+        setChatbots(res);
+      })
+      .catch((err) => {
+        console.error("Error fetching chatbots:", err);
+      });
+  }, []);
+
+ 
+
+
+
+  const handleAddBot = async () => {
+    if (botName.trim() === "" || botContext.trim() === "") return;
+
+    const newBot = {
+      name: botName,
+      context: botContext,
+    };
+
+    try {
+      await createChatbot({ name: botName, context: botContext, token: getToken() });
+      setChatbots((prev) => [...prev, newBot]);
+      setBotName("");
+      setBotContext("");
+    } catch (error) {
+      console.error("Error creating chatbot:", error);
+    }
+  };
+
   if (!isLoggedIn) {
     return (
       <div className="dashboard-container">
@@ -22,16 +58,7 @@ const Dashboard = () => {
       </div>
     );
   }
-  const handleAddBot = () => {
-    if (botName.trim() === "" || botContext.trim() === "") return;
-    const newBot = {
-      name: botName,
-      context: botContext,
-    };
-    setChatbots((prev) => [...prev, newBot]);
-    setBotName("");
-    setBotContext("");
-  };
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Chatbot Dashboard</h1>
@@ -61,8 +88,8 @@ const Dashboard = () => {
           <p className="no-chatbots">No chatbots added yet.</p>
         ) : (
           <ul className="chatbot-items">
-            {chatbots.map((bot,idx) => (
-              <li key={bot.name+""+idx} className="chatbot-item">
+            {chatbots.map((bot, idx) => (
+              <li key={bot.name} className="chatbot-item">
                 <div className="chatbot-info">
                   <h3 className="chatbot-name">{bot.name}</h3>
                   <p className="chatbot-context">{bot.context}</p>
@@ -81,4 +108,5 @@ const Dashboard = () => {
     </div>
   );
 };
+
 export default Dashboard;

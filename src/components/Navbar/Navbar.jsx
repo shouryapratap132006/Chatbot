@@ -5,6 +5,9 @@ import { AuthContext } from '@/Context/auth';
 import { useContext } from 'react';
 const Navbar = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   return (
     <div className="navbar">
       <div className="logo">Chatify</div>
@@ -12,9 +15,10 @@ const Navbar = () => {
       <div className="nav-items">
         <Link href="/home" className="nav-link">Home</Link>
         <Link href="/about" className="nav-link">About</Link>
+        <Link href="/explore" className="nav-link">Explore</Link>
         <Link href="/dashboard" className="nav-link">Dashboard</Link>
         {isLoggedIn ?
-          <button>Logout</button> :
+          <button className="logout-btn" onClick={handleLogout}>Logout</button> :
           <Link href="/auth/login" className="logout-btn">
             Login
           </Link>
