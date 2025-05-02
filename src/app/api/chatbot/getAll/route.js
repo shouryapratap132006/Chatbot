@@ -2,15 +2,6 @@ import { getAllChatBots, verifyToken } from "../../utils";
 
 export async function GET(req) {
   try {
-    const authHeader = req.headers.get("authorization");
-    const accessToken = authHeader?.split(" ")[1];
-
-    if (!accessToken || !verifyToken(accessToken)) {
-      return new Response(JSON.stringify({ err: "Unauthorized" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
     const data = await getAllChatBots();
     return new Response(JSON.stringify(data), {
       status: 200,
