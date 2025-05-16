@@ -79,7 +79,7 @@ const About = () => {
             AI-powered responses, and seamless integration with your favorite channels.
           </p>
           <p>
-            Whether you're a beginner or a developer, our dedicated support and robust features
+            Whether you&apos;re a beginner or a developer, our dedicated support and robust features
             ensure your bot is reliable, engaging, and grows your business.
           </p>
         </div>

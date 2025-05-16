@@ -46,7 +46,7 @@ const HomePage = () => {
         <div className="hero-text">
           {showSpeech && (
             <div className="robot-speech-box animated">
-              <p>"Hello there! I'm here to help you craft chatbots that truly understand your world."</p>
+              <p>&quot;Hello there! I&apos;m here to help you craft chatbots that truly understand your world.&quot;</p>
             </div>
           )}
           <h1>Create Smarter Conversations</h1>
@@ -75,7 +75,7 @@ const HomePage = () => {
           <div className="feature-card">
             <FaCogs className="feature-icon" />
             <h3>Context-Driven Logic</h3>
-            <p>Your bots only interpret and respond to what’s within your defined scope. No hallucinations.</p>
+            <p>Your bots only interpret and respond to what&apos;s within your defined scope. No hallucinations.</p>
           </div>
           <div className="feature-card">
             <FaUserFriends className="feature-icon" />
