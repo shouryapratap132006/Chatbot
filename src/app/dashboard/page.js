@@ -7,6 +7,8 @@ import { ChatbotContext } from "@/Context/chatbot";
 import Link from "next/link";
 import { getToken } from "@/helpers/auth";
 import { createChatbot, getChatbots } from "@/services/chatbot";
+import { FaRobot, FaUserEdit, FaAlignLeft } from "react-icons/fa";
+import Footer from "@/components/Footer/Footer";
 
 const Dashboard = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -25,10 +27,6 @@ const Dashboard = () => {
       });
   }, []);
 
- 
-
-
-
   const handleAddBot = async () => {
     if (botName.trim() === "" || botContext.trim() === "") return;
 
@@ -42,7 +40,8 @@ const Dashboard = () => {
       setChatbots((prev) => [...prev, newBot]);
       setBotName("");
       setBotContext("");
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Error creating chatbot:", error);
     }
   };
@@ -59,27 +58,37 @@ const Dashboard = () => {
     );
   }
 
-  return (
+
+  return (<>
     <div className="dashboard-container">
       <h1 className="dashboard-title">Chatbot Dashboard</h1>
       {/* Add New Chatbot Form */}
       <div className="form-container">
-        <input
-          type="text"
-          placeholder="Enter chatbot name"
-          value={botName}
-          onChange={(e) => setBotName(e.target.value)}
-          className="input-field"
-        />
-        <textarea
-          placeholder="Enter chatbot context"
-          value={botContext}
-          onChange={(e) => setBotContext(e.target.value)}
-          className="textarea-field"
-        ></textarea>
+        <div className="input-wrapper">
+          <FaUserEdit className="input-icon" />
+          <input
+            type="text"
+            placeholder="Enter chatbot name"
+            value={botName}
+            onChange={(e) => setBotName(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div className="input-wrapper">
+          <FaAlignLeft className="input-icon" />
+          <textarea
+            placeholder="Enter chatbot context"
+            value={botContext}
+            onChange={(e) => setBotContext(e.target.value)}
+            className="textarea-field"
+          ></textarea>
+        </div>
         <button onClick={handleAddBot} className="add-button">
           Add Chatbot
         </button>
+        <div className="robot-section">
+          <img src="/image2.png" alt="Chatbot Illustration" className="dashboard-robot" />
+        </div>
       </div>
       {/* List of Chatbots */}
       <div className="chatbot-list">
@@ -90,6 +99,10 @@ const Dashboard = () => {
           <ul className="chatbot-items">
             {chatbots.map((bot, idx) => (
               <li key={bot.name} className="chatbot-item">
+                <div className="chatbot-top">
+                  
+                  <FaRobot className="chatbot-icon" />
+                </div>
                 <div className="chatbot-info">
                   <h3 className="chatbot-name">{bot.name}</h3>
                   <p className="chatbot-context">{bot.context}</p>
@@ -105,8 +118,12 @@ const Dashboard = () => {
           </ul>
         )}
       </div>
+      
     </div>
+    <Footer/>
+    </>
   );
+
 };
 
 export default Dashboard;

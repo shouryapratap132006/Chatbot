@@ -10,6 +10,7 @@
 
 .heading {
     margin-bottom: 1.5rem;
+    color: black;
 }
 
 .form {
@@ -43,6 +44,7 @@
 .text {
     margin-top: 1rem;
     font-size: 0.9rem;
+    color: black;
 }
 
 .link {

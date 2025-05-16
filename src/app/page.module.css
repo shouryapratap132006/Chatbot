@@ -22,9 +22,15 @@
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
-    --button-primary-hover: #ccc;
+    --button-primary-hover: #cccccc;
     --button-secondary-hover: #1a1a1a;
   }
+}
+body{
+  margin: 0;
+  font-family: var(--font-geist-sans);
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .main {
@@ -108,7 +114,6 @@ a.secondary {
   flex-shrink: 0;
 }
 
-/* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
     background: var(--button-primary-hover);

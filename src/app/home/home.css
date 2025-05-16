@@ -1,0 +1,338 @@
+/* General */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0f1a;
+  color: #ffffff;
+}
+  /* Hero Section */
+  .hero.updated-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    gap: 60px;
+  }
+  
+  .bot-avatar-large {
+    width: 550px;
+    height: auto;
+    border-radius: 20px;
+  }
+  
+  .hero-text {
+    max-width: 600px;
+  }
+  
+  .hero-text h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #00f9ff;
+  }
+  
+  .hero-text h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  
+  .hero-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .btn-dark {
+    padding: 12px 24px;
+    background: transparent;
+    color: #00f9ff;
+    border: 2px solid #00f9ff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+
+  }
+    .btn-dark:hover {
+        background: #00f9ff;
+        color: #000;
+    }
+  
+  .btn-light {
+    padding: 12px 24px;
+    background: transparent;
+    color: #00f9ff;
+    border: 2px solid #00f9ff;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+    .btn-light:hover {
+        background: #00f9ff;
+        color: #000;
+    }
+  
+  /* Features */
+  .features-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 60px;
+    background: #121324;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .features {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+    gap: 30px;
+  }
+  
+  .features-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .features-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+  
+  /* Card Styling */
+  .feature-card {
+    background: #1f213a;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-icon {
+    font-size: 36px;
+    color: #00f9ff;
+    margin-bottom: 15px;
+  }
+  
+  /* Responsive: stack layout on smaller screens */
+  @media (max-width: 768px) {
+    .features-section {
+      flex-direction: column;
+      padding: 60px 30px;
+    }
+  
+    .features {
+      grid-template-columns: 1fr;
+    }
+  
+    .features-image {
+      margin-top: 40px;
+    }
+  }
+  
+  /* Stats */
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 40px;
+    background: #181933;
+    font-size: 18px;
+  }
+  
+  .stats div {
+    text-align: center;
+  }
+  
+  .plans {
+    padding: 80px 60px;
+    background: #0f0f1b;
+    color: #fff;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .plans h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #00f9ff;
+    font-weight: 600;
+  }
+  
+  .toggle-switch {
+    display: inline-flex;
+    background: #1a1a2e;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    border: 2px solid #00f9ff;
+  }
+  
+  .toggle-switch button {
+    padding: 12px 24px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .toggle-switch button.active {
+    background: #00f9ff;
+    color: #121324;
+    font-weight: 600;
+  }
+  
+  .plan-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    animation: fadeInUp 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .plan-card {
+    background: #1f213a;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #2a2d4e;
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 249, 255, 0.1);
+  }
+  
+  .plan-card.highlight {
+    border: 2px solid #00f9ff;
+    background: #20244a;
+    position: relative;
+  }
+  
+  .plan-card.highlight::before {
+    content: "Most Popular";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00f9ff;
+    color: #121324;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .plan-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .plan-card p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00f9ff;
+    margin-bottom: 20px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .plan-card li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .plan-card button {
+    padding: 12px 20px;
+    background: #00f9ff;
+    color: #121324;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .plan-card button:hover {
+    background: #00d6db;
+  }
+  
+
+  .robot-speech-box {
+    font-size: large;
+    background-color: #5681df;
+    border-left: 5px solid #fbfbfb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .cursor-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: #44d0ff;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    animation: fadeOut 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+  }
+  
+    
+  

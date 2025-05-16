@@ -1,96 +1,124 @@
+html, body {
+  margin: 0;
+  padding: 0; /* Ensure padding is also reset */
+}
 .navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #141e30, #1d3045);
+  padding: 1rem 2rem;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #00f0ff;
+  letter-spacing: 1px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+/* Navigation */
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00f0ff;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #00f0ff;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+/* Logout/Login Button */
+.logout-btn {
+  background: linear-gradient(135deg, #00f0ff, #0088ff);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-btn:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hamburger {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #141e30, #243b55);
-    padding: 1rem 2.5rem;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Logo */
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #00f0ff;
-    letter-spacing: 1px;
-  }
-  
-  /* Right-side nav items */
+
   .nav-items {
+    flex-direction: column;
+    background: #1b2735;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .nav-items.active {
     display: flex;
-    align-items: center;
-    gap: 2rem;
   }
-  
-  /* Nav Links */
-  .nav-link {
-    position: relative;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem;
-    transition: all 0.4s ease;
-  }
-  
-  .nav-link::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0%;
-    height: 2px;
-    background: #00f0ff;
-    transition: all 0.3s ease-in-out;
-    transform: translateX(-50%);
-  }
-  
-  .nav-link:hover {
-    color: #00f0ff;
-    letter-spacing: 0.5px;
-  }
-  
-  .nav-link:hover::before {
-    width: 100%;
-  }
-  
-  /* Logout Button */
+
+  .nav-link,
   .logout-btn {
-    background: linear-gradient(135deg, #00f0ff, #0088ff);
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
-    position: relative;
-    overflow: hidden;
+    margin: 0.5rem 0;
   }
-  
-  .logout-btn::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 20%, transparent 60%);
-    transform: rotate(45deg);
-    transition: all 0.6s ease;
-    opacity: 0;
-  }
-  
-  .logout-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-    transform: translateY(-2px);
-  }
-  
-  .logout-btn:hover::after {
-    top: -30%;
-    left: -30%;
-    opacity: 1;
-  }
-  
+}
