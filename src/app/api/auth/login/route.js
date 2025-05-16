@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+
 import path from "path";
 import dbAddress from "@/db";
 import User from "@/models/user";
@@ -27,14 +27,14 @@ export async function POST(req) {
         headers: { "Content-Type": "application/json" },
       });
     }
-    const isMatch = await bcrypt.compare(password, existingUser.password);
+    const isMatch = password === existingUser.password;
     if (!isMatch) {
       return new Response(JSON.stringify({ err: "Password does not match" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
     }
-    const token = await registerToken(email);
+    const {token} = await registerToken(email);
     return new Response(
       JSON.stringify({ token, message: "User logged in successfully" }),
       {

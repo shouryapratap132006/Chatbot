@@ -38,6 +38,7 @@ const Login = () => {
         email: form.email,
         password: form.password,
       });
+      console.log('Response:', response);
       const token = response.token
       localStorage.setItem('token', token);
       setIsLoggedIn(true);

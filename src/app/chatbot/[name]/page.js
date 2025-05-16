@@ -38,7 +38,8 @@ export default function Page() {
 
     try {
       const response = await askGemini({ text: message, context: botDetails.context });
-      const data = await response.json();
+      const {response:data} = await response.json();
+      // debugger;
       const botMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
 
       setMessages((prev) => [...prev, { sender: "bot", text: botMessage }]);
