@@ -1,7 +1,9 @@
-import { getChatbotByCreator, verifyToken } from "../../utils";
+import { createConnection } from "@/config/db";
+import { createChatbot, verifyToken } from "../../utils";
+await createConnection();
+export async function POST(req) {
 
-export async function GET(req) {
-  try {
+  try {    
     const authHeader = req.headers.get("authorization");
     const accessToken = authHeader?.split(" ")[1];
 
@@ -11,12 +13,14 @@ export async function GET(req) {
         headers: { "Content-Type": "application/json" },
       });
     }
+
     const email = accessToken.split("#@#")[1];
-    const data = await getChatbotByCreator(email);
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    const { name, context } = await req.json();
+    await createChatbot({ name, context, email });
+    return new Response(
+      JSON.stringify({ message: "chatbot created successfully" }),
+      { status: 201, headers: { "Content-Type": "application/json" } }
+    );
   } catch (err) {
     console.log(err);
     return new Response(JSON.stringify({ err: "Internal Server Error" }), {

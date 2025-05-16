@@ -1,22 +1,34 @@
+import bcrypt from "bcrypt";
 import path from "path";
-
-import { getData, postData } from "@/app/api/utils";
 import dbAddress from "@/db";
+import User from "@/models/user";
+import Token from "@/models/token";
+import { createConnection } from "@/config/db";
+await createConnection();
 
-const filePath = path.join(dbAddress, "users.json");
+// Conditionally set the file path based on environment
+let filePath;
+if (process.env.NODE_ENV === "production") {
+  filePath = path.join(process.cwd(), "src", "db", "users.json");
+} else {
+  filePath = path.join(dbAddress, "users.json");
+}
+
+console.log(filePath, "<----");
 
 export async function POST(req) {
   try {
+
     const { email, password } = await req.json();
-    const users = await getData(filePath);
-    const existingUser = users.find((user) => user.email === email);
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return new Response(JSON.stringify({ err: "User does not exists" }), {
+      return new Response(JSON.stringify({ err: "User does not exist" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
     }
-    if (existingUser.password !== password) {
+    const isMatch = await bcrypt.compare(password, existingUser.password);
+    if (!isMatch) {
       return new Response(JSON.stringify({ err: "Password does not match" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
@@ -33,7 +45,7 @@ export async function POST(req) {
       }
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return new Response(JSON.stringify({ err: "Internal Server Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
@@ -43,7 +55,6 @@ export async function POST(req) {
 
 const registerToken = async (email) => {
   const token = new Date().toISOString() + "#@#" + email;
-  const file = path.join(dbAddress, "tokenRegistry.json");
-  await postData(file, token);
-  return token;
+  const newToken = new Token({ token });
+  return newToken.save();
 };

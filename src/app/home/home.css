@@ -47,6 +47,19 @@ body, html {
     display: flex;
     gap: 20px;
   }
+  .cta-buttons a {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+    border: #00d6db 2px solid;
+    color: #00f9ff;
+  }
+  .cta-buttons a:hover {
+    background: #00f9ff;
+    color: #000;
+  }
   
   .btn-dark {
     padding: 12px 24px;

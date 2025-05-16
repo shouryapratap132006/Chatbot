@@ -4,6 +4,7 @@ import { FaRobot, FaCode, FaCogs, FaUserFriends } from "react-icons/fa";
 import CountUp from 'react-countup';
 import "./home.css";
 import Footer from "@/components/Footer/Footer";
+import Link from "next/link";
 
 const HomePage = () => {
   const [billingCycle, setBillingCycle] = useState("monthly");
@@ -52,8 +53,8 @@ const HomePage = () => {
           <h2>Personalized Chatbots Built Just for You</h2>
           <p>Design, Deploy & Customize chatbots that respond only based on your provided context.</p>
           <div className="cta-buttons">
-            <button className="btn-dark">Explore Bots</button>
-            <button className="btn-light">Go to Dashboard</button>
+            <Link href="/auth/login" className="cta-button">Get Started</Link>
+            <Link href="/explore" className="cta-button secondary">Explore Chatbots</Link>
           </div>
         </div>
       </section>
